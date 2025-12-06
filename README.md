@@ -64,25 +64,25 @@ FraxGuardian implements the **ADK-TS Perception-Reasoning-Action** framework:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    DATA LAYER                                │
+│                    DATA LAYER                               │
 │  Blockchain Monitor → Frax Contracts → Price Feeds → KRWQ   │
 └──────────────────────┬──────────────────────────────────────┘
                        ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                 AI BRAIN (ADK-TS Agent)                      │
-│  Perception → Opportunity Scanner                            │
-│  Reasoning → 6-Factor Risk Assessment + GPT Analysis         │
-│  Action → Safe Execution Planner                             │
+│                 AI BRAIN (ADK-TS Agent)                     │
+│  Perception → Opportunity Scanner                           │
+│  Reasoning → 6-Factor Risk Assessment + GPT Analysis        │
+│  Action → Safe Execution Planner                            │
 └──────────────────────┬──────────────────────────────────────┘
                        ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                  EXECUTION LAYER                             │
-│  Simulation → Testnet → Mainnet (Progressive Deployment)     │
+│                  EXECUTION LAYER                            │
+│  Simulation → Testnet → Mainnet (Progressive Deployment)    │
 └──────────────────────┬──────────────────────────────────────┘
                        ↓
 ┌─────────────────────────────────────────────────────────────┐
-│              TOKENIZATION & UI                               │
-│  ATP Token → Investor Dashboard → Performance Analytics      │
+│              TOKENIZATION & UI                              │
+│  ATP Token → Investor Dashboard → Performance Analytics     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
