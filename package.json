@@ -1,0 +1,45 @@
+{
+  "name": "fraxguardian-ai",
+  "version": "1.0.0",
+  "description": "Autonomous AI agent for finding profitable arbitrage in Frax Finance ecosystem",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/agent/index.ts",
+    "demo": "tsx src/demo.ts",
+    "demo:enhanced": "tsx src/demo-enhanced.ts",
+    "build": "tsc",
+    "start": "node dist/agent/index.js",
+    "test": "jest",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "frax-finance",
+    "defi",
+    "arbitrage",
+    "ai-agent",
+    "adk-ts",
+    "blockchain"
+  ],
+  "author": "FraxGuardian Team",
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/core": "^0.3.0",
+    "@langchain/openai": "^0.3.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
+    "langchain": "^0.3.0",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
