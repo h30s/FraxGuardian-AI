@@ -48,7 +48,7 @@ export default function Home() {
               <ArrowRight className="w-5 h-5" />
             </Link>
             <a
-              href="https://github.com/yourusername/fraxguardian-ai"
+              href="https://github.com/h30s/FraxGuardian-AI"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg font-semibold transition-all"
