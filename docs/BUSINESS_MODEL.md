@@ -507,7 +507,3 @@ FraxGuardian AI presents a unique investment opportunity at the intersection of:
 
 ---
 
-**Contact**: fraxguardian@proton.me  
-**Website**: [Coming Soon]  
-**Whitepaper**: This document  
-**Version**: 1.0 | December 2025
