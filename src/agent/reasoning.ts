@@ -1,9 +1,9 @@
 /**
- * FraxGuardian AI - Reasoning Module
- * AI-powered decision making and risk assessment (ADK-TS Reasoning Layer)
+ * FraxGuardian AI - Reasoning Module (ADK-TS Implementation)
+ * AI-powered decision making using official @iqai/adk API
  */
 
-import { ChatOpenAI } from '@langchain/openai';
+import { AgentBuilder, LlmAgent } from '@iqai/adk';
 import {
     ArbitrageOpportunity,
     ReasoningResult,
@@ -12,21 +12,22 @@ import {
 } from '../types/index.js';
 
 export class ReasoningModule {
-    private llm: ChatOpenAI;
+    private modelName: string;
 
-    constructor(openAiApiKey: string) {
-        this.llm = new ChatOpenAI({
-            modelName: 'gpt-3.5-turbo',
-            temperature: 0.3,
-            openAIApiKey: openAiApiKey,
-        });
+    constructor(openAiApiKey?: string) {
+        // Store model name for later use
+        this.modelName = 'gpt-3.5-turbo';
+
+        if (!openAiApiKey) {
+            console.warn('⚠️ No OpenAI API key provided - AI analysis will use fallback');
+        }
     }
 
     /**
      * Main reasoning function - analyze opportunities and make decisions
      */
     async reason(perceptionData: PerceptionData): Promise<ReasoningResult> {
-        console.log('🧠 REASONING: Analyzing opportunities with AI...');
+        console.log('🧠 REASONING: Analyzing opportunities with ADK-TS AI...');
 
         if (perceptionData.opportunities.length === 0) {
             return {
@@ -48,7 +49,7 @@ export class ReasoningModule {
         // Select best opportunity
         const bestOpportunity = scoredOpportunities[0];
 
-        // Get AI analysis for the best opportunity
+        // Get AI analysis for the best opportunity using ADK-TS agent
         const aiAnalysis = await this.getAIAnalysis(bestOpportunity, perceptionData);
 
         // Make decision based on risk score and profit
@@ -62,7 +63,7 @@ export class ReasoningModule {
             aiAnalysis,
         };
 
-        console.log(`✅ REASONING: Decision = ${decision} | Confidence = ${(result.confidence * 100).toFixed(1)}%`);
+        console.log(`✅ REASONING (ADK-TS): Decision = ${decision} | Confidence = ${(result.confidence * 100).toFixed(1)}%`);
         return result;
     }
 
@@ -129,14 +130,29 @@ export class ReasoningModule {
     }
 
     /**
-     * Get AI analysis using GPT
+     * Get AI analysis using ADK-TS agent
      */
     private async getAIAnalysis(
         opportunity: ArbitrageOpportunity,
         perceptionData: PerceptionData
     ): Promise<string> {
         try {
-            const prompt = `You are FraxGuardian AI, an expert DeFi arbitrage analyst. Analyze this opportunity:
+            // Create a simple reasoning agent using AgentBuilder
+            const { runner } = await AgentBuilder.create('reasoning_agent')
+                .withModel(this.modelName)
+                .withDescription('Expert DeFi arbitrage analyst')
+                .withInstruction(`You are FraxGuardian AI, an elite DeFi arbitrage analyst.
+Your expertise is in analyzing arbitrage opportunities in the Frax Finance ecosystem.
+You provide concise, actionable analysis focusing on:
+1. Profit margin assessment (risk vs reward)
+2. Execution risks (gas, slippage, competition)
+3. Market conditions
+4. Clear recommendation: EXECUTE, WAIT, or SKIP
+
+Always be brief (2-3 sentences) and decisive.`)
+                .build();
+
+            const prompt = `Analyze this Frax Finance arbitrage opportunity:
 
 Opportunity Details:
 - Source Pool: ${opportunity.sourcePool} (Price: $${opportunity.sourcePriceFrax})
@@ -150,15 +166,13 @@ Market Context:
 - Current Gas Price: ${perceptionData.gasPrice} Gwei
 - KRWQ Price: $${perceptionData.krwqPrice || 'N/A'}
 
-Provide a brief (2-3 sentences) analysis of this arbitrage opportunity. Focus on:
-1. Is the profit margin sufficient given the risks?
-2. Any concerns about execution?
-3. Your recommendation (EXECUTE, WAIT, or SKIP)?`;
+Provide your analysis and recommendation.`;
 
-            const response = await this.llm.invoke(prompt);
-            return response.content as string;
+            // Use ADK-TS runner to get response
+            const response = await runner.ask(prompt);
+            return response || 'Analysis completed.';
         } catch (error) {
-            console.error('Error getting AI analysis:', error);
+            console.error('Error getting ADK-TS AI analysis:', error);
             return `Analysis unavailable. Risk score: ${opportunity.riskScore.overall}/100. ${opportunity.riskScore.reasoning}`;
         }
     }
