@@ -88,12 +88,14 @@ FraxGuardian implements the **ADK-TS Perception-Reasoning-Action** framework:
 
 ### Tech Stack
 
-- **Core Framework:** ADK-TS (Perception-Reasoning-Action)
+- **Core Framework:** **@iqai/adk** (ADK-TS Agent Development Kit)
+- **Agent Architecture:** AgentBuilder with custom Tools
+- **AI/ML:** OpenAI GPT-3.5/GPT-4 via ADK-TS
 - **Blockchain:** Ethers.js v6, Base Sepolia Testnet
-- **AI/ML:** LangChain, OpenAI GPT-3.5/GPT-4
 - **Language:** TypeScript 5.6, Node.js 18+
 - **Testing:** Jest with TypeScript ES modules
 - **Integrations:** Frax Finance, KRWQ stablecoin
+
 
 ---
 
@@ -123,7 +125,10 @@ cp .env.example .env
 ### Run Demos
 
 ```bash
-# Basic demo (no API keys required)
+# ADK-TS Demo (RECOMMENDED - Official hackathon framework)
+npm run demo:adk
+
+# Basic demo (original version)
 npm run demo
 
 # Enhanced demo (shows Day 2 improvements)
@@ -135,6 +140,7 @@ npm test
 # Build for production
 npm run build
 ```
+
 
 ---
 

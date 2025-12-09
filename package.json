@@ -8,6 +8,7 @@
     "dev": "tsx src/agent/index.ts",
     "demo": "tsx src/demo.ts",
     "demo:enhanced": "tsx src/demo-enhanced.ts",
+    "demo:adk": "tsx src/demo-adk.ts",
     "build": "tsc",
     "start": "node dist/agent/index.js",
     "test": "jest",
@@ -24,12 +25,9 @@
   "author": "FraxGuardian Team",
   "license": "MIT",
   "dependencies": {
-    "@langchain/core": "^0.3.0",
-    "@langchain/openai": "^0.3.0",
+    "@iqai/adk": "^0.1.0",
     "dotenv": "^16.4.5",
-    "ethers": "^6.13.0",
-    "langchain": "^0.3.0",
-    "openai": "^4.0.0"
+    "ethers": "^6.13.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
